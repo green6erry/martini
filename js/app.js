@@ -1,88 +1,64 @@
+$(function(){
 
-var nextPageToken, prevPageToken, query, findex;
-$('#controls').hide();
 
-function clearEntry(){
-	$('#user-input').val('')
+var pantry = {
+	gin: 100;
+	vodka: 100;
 }
 
-function entryList (newEntry){
-	var allHtml;
-	allHtml += newEntry+'<hr>';
-	$('#search-results').append(allHtml);
-	$('#controls').fadeIn(1000);
-}
+// bartender funtion
 
-function showResults(results){
-	console.log('show');
-	var html=' ';
-	$.each(results, function(index, value){
-    	
-		var result = results[index];
-		var position = index+1;
-		if (result.id.kind == 'youtube#channel'){
-			var url = 'https://www.youtube.com/channel/'+result.id.channelId;
-		}
-		else {
-			var url = 'https://www.youtube.com/watch?v='+result.id.videoId;
-		}
-    	var title = result.snippet.title;
-    	var thumb = '<a href="'+url+'" target="_blank"><div class="thumb" style="background-image: url('+result.snippet.thumbnails.high.url+')"></div></a>';
-  
-	    html += '<div class="result"><h3>'+ position +'. '+title+'</h3>'+thumb+'<p>'+result.snippet.description+'<br>'+ position +'</p></div>';
+var Bartender = function(){};
 
-	});
-	entryList(html);
-	clearEntry();
+var questions = {};
+
+var liquor = Object.create(questions);
+liquor.prompt = "what kind of liquor would you prefer?";
+liquor.answers = ['gin', 'vodka', 'Lillet Blanc'];
+
+var garnish = Object.create(questions);
+garnish.prompt = "what kind of garnish would you like?";
+garnish.answers = ['lemon', 'olive', 'onion'];
+
+var prefs = ([liquor, garnish]);
+
+Bartender.prototype.askQuestions = function(){
+	prefs: '';
+	questions: []
+
 	
-}
+};
+Bartender.prototype.createDrink = function(prefs){};
 
 
 
-function getRequest(searchTerm, pageToken) {
-	console.log('get');
-	var params = {
-		// s: searchTerm,
-		r: 'json',
-		q: searchTerm,
-		part: 'snippet',
-		order: 'viewCount',
-		pageToken: pageToken,
-		maxResults: 10,
-		key: 'AIzaSyA5KnfmKw5qQc6iFwxuLlXw2lgd5ydWb8M'
-
-	};
-	url = 'https://www.googleapis.com/youtube/v3/search';
-	console.log(params);
-	$.getJSON(url, params, function(data){
-		console.log(data.items);
-		showResults(data.items);
-
-		nextPageToken = data.nextPageToken;
-		prevPageToken = data.prevPageToken;
-		query = searchTerm;
-		});
-}
-
-// When Page loads
-$(function() {
-	clearEntry();
-	$('#search-form').submit(function(event){
-		event.preventDefault();
-		var searchTerm = $('#user-input').val();
-		getRequest(searchTerm);
-	});
 
 
-$('#reset').click(event, function(){
-	event.preventDefault();
-	$('#search-results').empty();
+// recipe function
+
+var Recipe = function(){};
+
+var drink = new Recipe();
+
+drink.name = 'drink';
+drink.liquor = ['gin', 'vodka', 'Lillet Blanc'] 
+drink.garnish = ['lemon', 'olive', 'onion'];
+drink.mixing = ['shaken', 'stirred'];
+drink.dirty = [1, 2, 3, 4, 5];
+drink.vermouth = [1, 2, 3, 4];
+drink.style = ['classic', 'fancy'];
+drink.rocks = false;
+
+
+
+
+
+
+
+
+
+
+
+
+// End of Page Ready Function
 });
-$('#next-page').click(function(event){
-	console.log('here');
-	event.preventDefault();
-	getRequest(query, nextPageToken);
-});
-
-});
-
