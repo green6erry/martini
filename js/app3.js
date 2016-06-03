@@ -86,12 +86,12 @@ Recipe.prototype.addLine = function(selectedCategories){
 	var amounts = this.amounts = []; //still empty
 	
 	selectedCategories.forEach(function(){
-		push(self.ingredient); // AHHH HALP!!! Not doing random thing
+		push(self.item); // AHHH HALP!!! Not doing random thing
 	});
 };
 
 //making an instance of the drink, of the 4th proto (pre-defined by proto and already catered to specific data)
-  drink = new Drink;
+ var drink = new Recipe;
 
 
 
