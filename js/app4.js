@@ -89,7 +89,7 @@ $(function(){
         $(parent).append(resultsHTML);
     });
 
-    var close = '<input type="submit" class="btn btn-alt close" value="close">';
+    var close = '<input type="submit" class="btn btn-alt close" value="Close">';
     $(parent).append(close);
   };
 
@@ -162,13 +162,14 @@ $(function(){
     categories.forEach(function(cat) {
       var questAns = [
         '<div>',
-          '<label for="'+ cat.ingredient[0] +'">'+ cat.prompt +'</label>',
           '<input type="checkbox" id="'+ cat.ingredient[0] +'">',
+          '<label for="'+ cat.ingredient[0] +'">'+ cat.prompt +'</label>',
+          
         '</div><br>'
         ].join("");
       $(parent).append(questAns);
     });
-    var submit = '<input type="submit" class="btn btn-alt" value="arugah!!!">';
+    var submit = '<input type="submit" class="btn btn-alt" value="Make Recipe!">';
     $(parent).append(submit);
   };
 
