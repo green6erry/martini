@@ -2,7 +2,6 @@ $(function(){
 
   $(function(){
     controller.initialize();
-    console.log('hello');
   });
 
 //1st proto
