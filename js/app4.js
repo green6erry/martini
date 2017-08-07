@@ -89,8 +89,9 @@ $(function(){
         $(parent).append(resultsHTML);
     });
 
-    var close = '<input type="submit" class="btn btn-alt close" value="close">';
-    $(parent).append(close);
+    var close = '<input type="submit" class="btn btn-alt" href="javascript:close_window();" value="close">';
+    var again = '<input type="submit" class="btn btn-alt close" value="again">';
+    $(parent).append(again);
   };
 
 
